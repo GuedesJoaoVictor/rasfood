@@ -7,7 +7,7 @@ import br.csi.utils.JPAUtil;
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
 
-public class DishService {
+public class MenuService {
     public static void main(String[] args) {
         Menu risoto = new Menu();
         risoto.setName("Risoto de frutos do mar");
