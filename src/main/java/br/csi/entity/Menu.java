@@ -16,6 +16,7 @@ public class Menu {
     private BigDecimal price;
     @Column(name = "register_date")
     private LocalDateTime createdAt = LocalDateTime.now();
+    private MenuCategory menuCategory;
 
     public Menu() {}
 
