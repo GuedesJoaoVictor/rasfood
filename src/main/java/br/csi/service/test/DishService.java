@@ -1,25 +1,40 @@
 package br.csi.service.test;
 
-import br.csi.entity.Dish;
+import br.csi.dao.MenuDAO;
+import br.csi.entity.Menu;
+import br.csi.utils.JPAUtil;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.math.BigDecimal;
 
 public class DishService {
     public static void main(String[] args) {
-        Dish risoto = new Dish();
+        Menu risoto = new Menu();
         risoto.setName("Risoto de frutos do mar");
         risoto.setDescription("Risoto acompanhado de lula, polvo e mariscos");
         risoto.setStatus(true);
         risoto.setPrice(BigDecimal.valueOf(88.50));
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("rasfood");
-        EntityManager entityManager = emf.createEntityManager();
+        Menu salmao = new Menu();
+        salmao.setName("Salmão ao molho de maracujá");
+        salmao.setDescription("Salmão grelhado ao molho de maracujá");
+        salmao.setStatus(true);
+        salmao.setPrice(BigDecimal.valueOf(60.00));
+
+        EntityManager entityManager = JPAUtil.getEntityManagerRasFood();
+        MenuDAO menuDAO = new MenuDAO(entityManager);
         entityManager.getTransaction().begin();
-        entityManager.persist(risoto);
-        entityManager.getTransaction().commit();
-        entityManager.close();
+        menuDAO.save(risoto);
+        entityManager.flush();
+        menuDAO.save(salmao);
+        entityManager.flush();
+        System.out.println("O prato consultado foi: " + menuDAO.findById(1));
+        menuDAO.delete(salmao);
+        System.out.println("O prato consultado foi: " + menuDAO.findById(2));
+
+        entityManager.clear();
+        risoto.setPrice(BigDecimal.valueOf(75.50));
+        menuDAO.update(risoto);
+        System.out.println("O prato consultado foi: " + menuDAO.findById(1));
     }
 }

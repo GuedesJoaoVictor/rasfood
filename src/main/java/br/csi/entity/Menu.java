@@ -5,8 +5,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Dishes")
-public class Dish {
+@Table(name = "menu")
+public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -17,7 +17,7 @@ public class Dish {
     @Column(name = "register_date")
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    public Dish() {}
+    public Menu() {}
 
     public int getId() {
         return id;
