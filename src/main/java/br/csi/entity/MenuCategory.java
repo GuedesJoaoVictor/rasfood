@@ -12,6 +12,10 @@ public class MenuCategory {
 
     public MenuCategory() {}
 
+    public MenuCategory(String name) {
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }
@@ -26,5 +30,13 @@ public class MenuCategory {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "MenuCategory{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

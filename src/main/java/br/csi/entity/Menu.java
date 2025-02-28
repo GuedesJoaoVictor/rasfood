@@ -16,9 +16,19 @@ public class Menu {
     private BigDecimal price;
     @Column(name = "register_date")
     private LocalDateTime createdAt = LocalDateTime.now();
+    @ManyToOne
     private MenuCategory menuCategory;
 
     public Menu() {}
+
+    public Menu(String name, String description, Boolean status, BigDecimal price, LocalDateTime createdAt, MenuCategory menuCategory) {
+        this.name = name;
+        this.description = description;
+        this.status = status;
+        this.price = price;
+        this.createdAt = createdAt;
+        this.menuCategory = menuCategory;
+    }
 
     public int getId() {
         return id;
@@ -68,15 +78,24 @@ public class Menu {
         this.createdAt = createdAt;
     }
 
+    public MenuCategory getMenuCategory() {
+        return menuCategory;
+    }
+
+    public void setMenuCategory(MenuCategory menuCategory) {
+        this.menuCategory = menuCategory;
+    }
+
     @Override
     public String toString() {
-        return "Dish{" +
+        return "Menu{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", status=" + status +
                 ", price=" + price +
                 ", createdAt=" + createdAt +
+                ", menuCategory=" + menuCategory +
                 '}';
     }
 }
