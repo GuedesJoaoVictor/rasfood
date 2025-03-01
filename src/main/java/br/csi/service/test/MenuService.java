@@ -42,6 +42,7 @@ public class MenuService {
 
         MenuDAO menuDAO = new MenuDAO(em);
         em.getTransaction().begin();
+
         menuDAO.save(risoto);
         risoto.setMenuCategory(category);
         em.flush();
