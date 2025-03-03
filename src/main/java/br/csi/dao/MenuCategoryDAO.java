@@ -4,6 +4,7 @@ import br.csi.entity.Menu;
 import br.csi.entity.MenuCategory;
 
 import javax.persistence.EntityManager;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class MenuCategoryDAO {
@@ -21,6 +22,11 @@ public class MenuCategoryDAO {
         return entityManager.find(MenuCategory.class, id);
     }
 
+    public List<MenuCategory> findAll() {
+        String query = "select mc from MenuCategory mc";
+        return entityManager.createQuery(query, MenuCategory.class).getResultList();
+    }
+
     public void update(MenuCategory category) {
         entityManager.merge(category);
     }
@@ -29,8 +35,4 @@ public class MenuCategoryDAO {
         entityManager.remove(category);
     }
 
-    public List<MenuCategory> findAll() {
-        String query = "select mc from MenuCategory mc";
-        return entityManager.createQuery(query, MenuCategory.class).getResultList();
-    }
 }
