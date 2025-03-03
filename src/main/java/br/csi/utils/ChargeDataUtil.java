@@ -60,6 +60,6 @@ public class ChargeDataUtil {
         menuDAO.save(pastelDeQueijo);
 
         em.getTransaction().commit();
-        em.close();
+        em.clear();
     }
 }
