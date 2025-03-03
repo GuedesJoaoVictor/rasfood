@@ -1,8 +1,10 @@
 package br.csi.dao;
 
 import br.csi.entity.Menu;
+import br.csi.entity.MenuCategory;
 
 import javax.persistence.EntityManager;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class MenuDAO {
@@ -24,6 +26,16 @@ public class MenuDAO {
     public List<Menu> findAll() {
         String query = "select m from Menu m";
         return entityManager.createQuery(query, Menu.class).getResultList();
+    }
+
+    public List<Menu> findByPrice(BigDecimal price) {
+        String query = "select m from Menu m where m.price = :price";
+        return entityManager.createQuery(query, Menu.class).setParameter("price", price).getResultList();
+    }
+
+    public List<Menu> findByPrice(BigDecimal min, BigDecimal max) {
+        String query = "select m from Menu m where m.price >= :min and m.price <= :max";
+        return entityManager.createQuery(query, Menu.class).setParameter("min", min).setParameter("max", max).getResultList();
     }
 
     public void update(Menu menu) {
