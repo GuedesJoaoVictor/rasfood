@@ -1,8 +1,10 @@
 package br.csi.dao;
 
+import br.csi.entity.Menu;
 import br.csi.entity.MenuCategory;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class MenuCategoryDAO {
     private final EntityManager entityManager;
@@ -25,5 +27,10 @@ public class MenuCategoryDAO {
 
     public void delete(MenuCategory category) {
         entityManager.remove(category);
+    }
+
+    public List<MenuCategory> findAll() {
+        String query = "select mc from MenuCategory mc";
+        return entityManager.createQuery(query, MenuCategory.class).getResultList();
     }
 }
