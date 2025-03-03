@@ -5,6 +5,7 @@ import br.csi.entity.MenuCategory;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.List;
 
 public class MenuDAO {
@@ -20,29 +21,62 @@ public class MenuDAO {
     }
 
     public Menu findById(int id) {
-        return this.entityManager.find(Menu.class, id);
+        try {
+            return this.entityManager.find(Menu.class, id);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public List<Menu> findAll() {
-        String query = "select m from Menu m";
-        return entityManager.createQuery(query, Menu.class).getResultList();
+        try {
+            String query = "select m from Menu m";
+            return entityManager.createQuery(query, Menu.class).getResultList();
+        } catch (Exception e) {
+            return Collections.emptyList();
+        }
     }
 
     public List<Menu> findByPrice(BigDecimal price) {
-        String query = "select m from Menu m where m.price = :price";
-        return entityManager.createQuery(query, Menu.class).setParameter("price", price).getResultList();
+        try {
+            String query = "select m from Menu m where m.price = :price";
+            return entityManager.createQuery(query, Menu.class).setParameter("price", price).getResultList();
+        } catch (Exception e) {
+            return Collections.emptyList();
+        }
     }
 
     public List<Menu> findByPrice(BigDecimal min, BigDecimal max) {
-        String query = "select m from Menu m where m.price >= :min and m.price <= :max";
-        return entityManager.createQuery(query, Menu.class).setParameter("min", min).setParameter("max", max).getResultList();
+        try {
+            String query = "select m from Menu m where m.price >= :min and m.price <= :max";
+            return entityManager.createQuery(query, Menu.class).setParameter("min", min).setParameter("max", max).getResultList();
+        } catch (Exception e) {
+            return Collections.emptyList();
+        }
+    }
+
+    public Menu findByName(String name) {
+        try {
+            String query = "select m from Menu m where upper(m.name) = upper(:name)";
+            return entityManager.createQuery(query, Menu.class).setParameter("name", name).getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public void update(Menu menu) {
-        this.entityManager.merge(menu);
+        try {
+            this.entityManager.merge(menu);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     public void delete(Menu menu) {
-        this.entityManager.remove(menu);
+        try {
+            this.entityManager.remove(menu);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 }

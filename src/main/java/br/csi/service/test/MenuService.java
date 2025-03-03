@@ -14,8 +14,10 @@ public class MenuService {
         ChargeDataUtil.registerCategory(em);
         ChargeDataUtil.registerProductMenu(em);
         MenuDAO menuDAO = new MenuDAO(em);
-        System.out.println("Lista de produtos por valor: " + menuDAO.findByPrice(BigDecimal.valueOf(25.00)));
-        System.out.println("Lista de produtos por valor min max: " + menuDAO.findByPrice(BigDecimal.valueOf(25.00), BigDecimal.valueOf(35.00)));
+        System.out.println("\nLista de produtos por valor: " + menuDAO.findByPrice(BigDecimal.valueOf(25.00)) + "\n");
+        //menuDAO.findByPrice(BigDecimal.valueOf(25.00), BigDecimal.valueOf(35.00)).forEach(System.out::println);
+        System.out.println("\nLista de produtos por valor min max: " + menuDAO.findByPrice(BigDecimal.valueOf(25.00), BigDecimal.valueOf(35.00)) + "\n");
+        System.out.println("\nProduto pesquisado por nome:" + menuDAO.findByName("feijoada"));
         em.close();
     }
 }
