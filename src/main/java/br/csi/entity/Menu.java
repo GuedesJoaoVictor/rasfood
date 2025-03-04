@@ -3,6 +3,7 @@ package br.csi.entity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "menu")
@@ -18,15 +19,16 @@ public class Menu {
     private LocalDateTime createdAt = LocalDateTime.now();
     @ManyToOne
     private MenuCategory menuCategory;
+    @ManyToMany(mappedBy = "menuList")
+    private List<Order> orderList;
 
     public Menu() {}
 
-    public Menu(String name, String description, Boolean status, BigDecimal price, LocalDateTime createdAt, MenuCategory menuCategory) {
+    public Menu(String name, String description, Boolean status, BigDecimal price, MenuCategory menuCategory) {
         this.name = name;
         this.description = description;
         this.status = status;
         this.price = price;
-        this.createdAt = createdAt;
         this.menuCategory = menuCategory;
     }
 
