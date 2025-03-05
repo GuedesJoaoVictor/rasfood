@@ -18,8 +18,8 @@ public class Order {
     @ManyToOne
     private Client client;
     @ManyToMany
-    @JoinTable(name = "order_menu", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "menu_id"))
-    private List<Menu> menuList;
+    //JoinTable(name = "order_menu", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "menu_id"))
+    private List<OrderMenu> orderMenuList;
 
     public Order() {}
 
