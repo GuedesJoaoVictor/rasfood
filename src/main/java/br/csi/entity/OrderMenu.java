@@ -22,7 +22,7 @@ public class OrderMenu {
         this.order = order;
         this.menu = menu;
         this.quantity = quantity;
-        this.value = menu.getPrice();
+        this.value = menu.getPrice().multiply(BigDecimal.valueOf(quantity));
     }
 
     public Order getOrder() {
