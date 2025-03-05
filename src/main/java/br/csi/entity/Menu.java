@@ -3,6 +3,7 @@ package br.csi.entity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,8 +20,6 @@ public class Menu {
     private LocalDateTime createdAt = LocalDateTime.now();
     @ManyToOne
     private MenuCategory menuCategory;
-    @ManyToMany(mappedBy = "menuList")
-    private List<Order> orderList;
 
     public Menu() {}
 
