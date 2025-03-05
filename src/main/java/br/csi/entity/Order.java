@@ -19,7 +19,7 @@ public class Order {
     @ManyToOne
     private Client client;
     //JoinTable(name = "order_menu", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "menu_id"))
-    @OneToMany(mappedBy = "ordem")
+    @OneToMany(mappedBy = "order")
     private List<OrderMenu> orderMenuList = new ArrayList<>();
 
     public Order() {}
