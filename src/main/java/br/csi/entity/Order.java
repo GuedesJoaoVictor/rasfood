@@ -3,6 +3,7 @@ package br.csi.entity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,14 +18,19 @@ public class Order {
     private LocalDateTime createdAt = LocalDateTime.now();
     @ManyToOne
     private Client client;
-    @ManyToMany
     //JoinTable(name = "order_menu", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "menu_id"))
-    private List<OrderMenu> orderMenuList;
+    @OneToMany(mappedBy = "ordem")
+    private List<OrderMenu> orderMenuList = new ArrayList<>();
 
     public Order() {}
 
     public Order(Client client) {
         this.client = client;
+    }
+
+    public void setOrder(OrderMenu orderMenu) {
+        orderMenu.setOrder(this);
+        this.orderMenuList.add(orderMenu);
     }
 
     public int getId() {
