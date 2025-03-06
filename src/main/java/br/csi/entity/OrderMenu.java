@@ -63,4 +63,15 @@ public class OrderMenu {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    @Override
+    public String toString() {
+        return "OrderMenu{" +
+                "id=" + id +
+                ", order=" + order +
+                ", menu=" + menu +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                '}';
+    }
 }

@@ -27,6 +27,7 @@ public class OrderService {
         Order order = new Order(guedes);
         order.setOrder(new OrderMenu(menuDAO.findById(1), 2));
         orderDAO.save(order);
+        System.out.println(order.getOrderMenuList());
         em.getTransaction().commit();
         em.close();
     }
