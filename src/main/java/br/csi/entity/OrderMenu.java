@@ -13,16 +13,23 @@ public class OrderMenu {
     private Order order;
     @ManyToOne
     private Menu menu;
-    private BigDecimal value;
+    private BigDecimal price;
     private int quantity;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public OrderMenu() {}
 
-    public OrderMenu(Order order, Menu menu, int quantity) {
-        this.order = order;
+    public OrderMenu(Menu menu, int price) {
         this.menu = menu;
         this.quantity = quantity;
-        this.value = menu.getPrice().multiply(BigDecimal.valueOf(quantity));
+        this.price = menu.getPrice().multiply(BigDecimal.valueOf(price));
     }
 
     public Order getOrder() {
@@ -41,12 +48,12 @@ public class OrderMenu {
         this.menu = menu;
     }
 
-    public BigDecimal getValue() {
-        return value;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setValue(BigDecimal value) {
-        this.value = value;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     public int getQuantity() {

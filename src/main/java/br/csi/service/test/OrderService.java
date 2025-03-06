@@ -23,10 +23,11 @@ public class OrderService {
         OrderDAO orderDAO = new OrderDAO(em);
 
         Client guedes = new Client("Guedes", "05265294059", "970431920");
-        Order order = new Order(guedes);
-        order.setOrder(new OrderMenu(order, menuDAO.findById(1), 2));
         clientDAO.save(guedes);
+        Order order = new Order(guedes);
+        order.setOrder(new OrderMenu(menuDAO.findById(1), 2));
         orderDAO.save(order);
+        em.getTransaction().commit();
         em.close();
     }
 }

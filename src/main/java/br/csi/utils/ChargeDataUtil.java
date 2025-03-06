@@ -59,7 +59,7 @@ public class ChargeDataUtil {
         menuDAO.save(bolinhoDeBacalhau);
         menuDAO.save(pastelDeQueijo);
 
-        em.getTransaction().commit();
+        em.flush();
         em.clear();
     }
 }
