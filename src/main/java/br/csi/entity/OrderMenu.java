@@ -26,10 +26,10 @@ public class OrderMenu {
 
     public OrderMenu() {}
 
-    public OrderMenu(Menu menu, int price) {
+    public OrderMenu(Menu menu, int quantity) {
         this.menu = menu;
         this.quantity = quantity;
-        this.price = menu.getPrice().multiply(BigDecimal.valueOf(price));
+        this.price = menu.getPrice().multiply(BigDecimal.valueOf(quantity));
     }
 
     public Order getOrder() {

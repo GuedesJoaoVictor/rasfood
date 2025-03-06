@@ -1,23 +1,27 @@
 package br.csi.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "client")
+@Table(name = "clients")
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String cpf;
-    private String cep;
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private List<Address> addressList = new ArrayList<>();
 
     public Client() {}
 
-    public Client(String name, String cpf, String cep) {
+    public Client(String name, String cpf, Address address) {
         this.name = name;
         this.cpf = cpf;
-        this.cep = cep;
+        this.addressList.add(address);
+        address.setClient(this);
     }
 
     public int getId() {
@@ -44,12 +48,19 @@ public class Client {
         this.cpf = cpf;
     }
 
-    public String getCep() {
-        return cep;
+    public List<Address> getAddressList() {
+        return addressList;
     }
 
-    public void setCep(String cep) {
-        this.cep = cep;
+    public void setAddress(Address address) {
+        address.setClient(this);
+        this.addressList.add(address);
+    }
+
+    public Client(String name, String cpf, List<Address> addressList) {
+        this.name = name;
+        this.cpf = cpf;
+        this.addressList = addressList;
     }
 
     @Override
@@ -58,7 +69,7 @@ public class Client {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", cpf='" + cpf + '\'' +
-                ", cep='" + cep + '\'' +
+                ", addressList=" + addressList +
                 '}';
     }
 }
