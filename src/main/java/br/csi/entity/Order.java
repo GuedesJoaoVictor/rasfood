@@ -13,7 +13,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "final_price")
-    private BigDecimal finalPrice;
+    private BigDecimal finalPrice = BigDecimal.ZERO;
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
     @ManyToOne
