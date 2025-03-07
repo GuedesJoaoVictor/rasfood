@@ -49,7 +49,7 @@ public class OrderMenu {
         this.menu = menu;
     }
 
-    public BigDecimal setRegisterValue() {
+    public BigDecimal getRegisterValue() {
         return registerValue;
     }
 
