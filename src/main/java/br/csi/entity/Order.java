@@ -88,6 +88,7 @@ public class Order {
                 ", finalPrice=" + finalPrice +
                 ", createdAt=" + createdAt +
                 ", client=" + client +
+                ", orderMenuList=" + orderMenuList +
                 '}';
     }
 }

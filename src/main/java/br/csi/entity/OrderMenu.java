@@ -13,7 +13,8 @@ public class OrderMenu {
     private Order order;
     @ManyToOne
     private Menu menu;
-    private BigDecimal price;
+    @Column(name = "register_value")
+    private BigDecimal registerValue;
     private int quantity;
 
     public int getId() {
@@ -29,7 +30,7 @@ public class OrderMenu {
     public OrderMenu(Menu menu, int quantity) {
         this.menu = menu;
         this.quantity = quantity;
-        this.price = menu.getPrice().multiply(BigDecimal.valueOf(quantity));
+        this.registerValue = menu.getPrice();
     }
 
     public Order getOrder() {
@@ -48,12 +49,12 @@ public class OrderMenu {
         this.menu = menu;
     }
 
-    public BigDecimal getPrice() {
-        return price;
+    public BigDecimal setRegisterValue() {
+        return registerValue;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setRegisterValue(BigDecimal registerValue) {
+        this.registerValue = registerValue;
     }
 
     public int getQuantity() {
@@ -68,9 +69,8 @@ public class OrderMenu {
     public String toString() {
         return "OrderMenu{" +
                 "id=" + id +
-                ", order=" + order +
                 ", menu=" + menu +
-                ", price=" + price +
+                ", registerValue=" + registerValue +
                 ", quantity=" + quantity +
                 '}';
     }
