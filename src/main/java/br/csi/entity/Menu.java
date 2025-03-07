@@ -18,7 +18,7 @@ public class Menu {
     private BigDecimal price;
     @Column(name = "register_date")
     private LocalDateTime createdAt = LocalDateTime.now();
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private MenuCategory menuCategory;
 
     public Menu() {}

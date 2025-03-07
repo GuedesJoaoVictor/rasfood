@@ -22,8 +22,13 @@ public class OrderService {
         ChargeDataUtil.registerClients(em);
         ChargeDataUtil.registerOrdersClients(em);
         OrderDAO orderDAO = new OrderDAO(em);
+        Order order = orderDAO.joinFetchClient(2);
 
         System.out.println(orderDAO.findItensMoreSelled());
+        System.out.println(order.getClient().getName());
+
+        ClientDAO clientDAO = new ClientDAO(em);
+        System.out.println(clientDAO.findByName("João"));
 
         em.getTransaction().commit();
         em.close();

@@ -16,7 +16,7 @@ public class Order {
     private BigDecimal finalPrice = BigDecimal.ZERO;
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Client client;
     //JoinTable(name = "order_menu", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "menu_id"))
     /*

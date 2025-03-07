@@ -13,7 +13,7 @@ public class Address {
     private String complement;
     private String state;
     private String city;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Client client;
 
     public Address(String cep, String street, String complement, String state, String city) {

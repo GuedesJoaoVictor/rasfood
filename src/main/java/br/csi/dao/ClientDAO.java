@@ -21,6 +21,11 @@ public class ClientDAO {
         return em.createQuery(query, Client.class).getResultList();
     }
 
+    public List<Client> findByName(String name) {
+         String query = "select c from Client c where upper(c.name) like upper(:name)";
+         return em.createQuery(query, Client.class).setParameter("name", "%"+name+"%").getResultList();
+    }
+
     public void update(Client client) { em.merge(client); }
 
     public void delete(Client client) { em.remove(client); }

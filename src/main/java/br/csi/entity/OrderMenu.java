@@ -9,9 +9,9 @@ public class OrderMenu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Order order;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Menu menu;
     @Column(name = "register_value")
     private BigDecimal registerValue;

@@ -68,7 +68,7 @@ public class ChargeDataUtil {
         Address address5 = new Address("321654987", "Avenida Paulista", "1500", "SP", "São Paulo");
 
         // Clientes
-        Client guedes = new Client("Guedes", "05265294059", address1);
+        Client guedes = new Client("João Guedes", "05265294059", address1);
         Client maria = new Client("Maria Silva", "12345678901", address2);
         Client joao = new Client("João Oliveira", "98765432109", address3);
         Client ana = new Client("Ana Costa", "45678912345", address4);
