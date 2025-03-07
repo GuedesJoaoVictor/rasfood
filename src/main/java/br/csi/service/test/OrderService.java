@@ -23,7 +23,7 @@ public class OrderService {
         ChargeDataUtil.registerOrdersClients(em);
         OrderDAO orderDAO = new OrderDAO(em);
 
-        orderDAO.findItensMoreSelled().forEach(item -> System.out.println("Item: " + item[0] + "\t-\t" + "Quantity: " + item[1]));
+        System.out.println(orderDAO.findItensMoreSelled());
 
         em.getTransaction().commit();
         em.close();

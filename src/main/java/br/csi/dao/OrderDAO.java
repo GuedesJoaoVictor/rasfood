@@ -1,7 +1,7 @@
 package br.csi.dao;
 
-import br.csi.entity.Client;
 import br.csi.entity.Order;
+import br.csi.vo.PrimaryItensVo;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -22,9 +22,9 @@ public class OrderDAO {
         return em.createQuery(query, Order.class).getResultList();
     }
 
-    public List<Object[]> findItensMoreSelled() {
-        String query = "select m.name, sum(om.quantity) from Order o join OrderMenu om on o.id = om.order.id join Menu m on m.id = om.menu.id group by m.name";
-        return em.createQuery(query, Object[].class).getResultList();
+    public List<PrimaryItensVo> findItensMoreSelled() {
+        String query = "select new br.csi.vo.PrimaryItensVo(m.name, sum(om.quantity)) from Order o join OrderMenu om on o.id = om.order.id join Menu m on m.id = om.menu.id group by m.name";
+        return em.createQuery(query, PrimaryItensVo.class).getResultList();
     }
 
     public void update(Order order) { em.merge(order); }
