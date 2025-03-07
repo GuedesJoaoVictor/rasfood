@@ -22,6 +22,11 @@ public class OrderDAO {
         return em.createQuery(query, Order.class).getResultList();
     }
 
+    public List<Object[]> findItensMoreSelled() {
+        String query = "select m.name, sum(om.quantity) from Order o join OrderMenu om on o.id = om.order.id join Menu m on m.id = om.menu.id group by m.name";
+        return em.createQuery(query, Object[].class).getResultList();
+    }
+
     public void update(Order order) { em.merge(order); }
 
     public void delete(Order order) { em.remove(order); }
