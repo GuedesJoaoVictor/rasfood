@@ -39,6 +39,13 @@ public class Order {
     public void setOrder(OrderMenu orderMenu) {
         orderMenu.setOrder(this);
         this.orderMenuList.add(orderMenu);
+        this.finalPrice = finalPrice.add(
+                orderMenu.getRegisterValue().multiply(
+                        BigDecimal.valueOf(
+                                orderMenu.getQuantity()
+                        )
+                )
+        );
     }
 
     public List<OrderMenu> getOrderMenuList() {
