@@ -1,7 +1,6 @@
 package br.csi.dao;
 
 import br.csi.entity.Address;
-import br.csi.entity.Order;
 
 import javax.persistence.EntityManager;
 import java.util.List;
