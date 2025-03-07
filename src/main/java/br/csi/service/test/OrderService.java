@@ -19,20 +19,12 @@ public class OrderService {
         em.getTransaction().begin();
         ChargeDataUtil.registerCategory(em);
         ChargeDataUtil.registerProductMenu(em);
-
-        MenuDAO menuDAO = new MenuDAO(em);
-        ClientDAO clientDAO = new ClientDAO(em);
+        ChargeDataUtil.registerClients(em);
+        ChargeDataUtil.registerOrdersClients(em);
         OrderDAO orderDAO = new OrderDAO(em);
-        AddressDAO addressDAO = new AddressDAO(em);
 
-        Address address = new Address("970431920", "Ferndandes Vieira", "81", "RS", "SM");
-        addressDAO.save(address);
-        Client guedes = new Client("Guedes", "05265294059", address);
-        clientDAO.save(guedes);
-        Order order = new Order(guedes);
-        order.setOrder(new OrderMenu(menuDAO.findById(1), 2));
-        orderDAO.save(order);
-        System.out.println(order);
+        orderDAO.findItensMoreSelled().forEach(item -> System.out.println("Item: " + item[0] + "\t-\t" + "Quantity: " + item[1]));
+
         em.getTransaction().commit();
         em.close();
     }
