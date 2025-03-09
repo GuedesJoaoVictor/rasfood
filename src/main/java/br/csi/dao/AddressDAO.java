@@ -6,6 +6,10 @@ import br.csi.vo.ClientVo;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.Objects;
 
@@ -56,6 +60,27 @@ public class AddressDAO {
         if(Objects.nonNull(street)) {
             tq.setParameter("street", street);
         }
+    }
+
+    public List<ClientVo> findClientUsingCriteria(String state, String city, String street) {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<ClientVo> criteriaQuery = builder.createQuery(ClientVo.class);
+        Root<Address> root = criteriaQuery.from(Address.class);
+        criteriaQuery.multiselect(root.get("client").get("cpf"), root.get("client").get("name"));
+        Predicate predicate = builder.and();
+
+        if(Objects.nonNull(state)) {
+            predicate = builder.and(predicate, builder.equal(builder.upper(root.get("state")), state.toUpperCase()));
+        }
+        if(Objects.nonNull(city)) {
+            predicate = builder.and(predicate, builder.equal(builder.upper(root.get("city")), city.toUpperCase()));
+        }
+        if(Objects.nonNull(street)) {
+            predicate = builder.and(predicate, builder.equal(builder.upper(root.get("street")), street.toUpperCase()));
+        }
+
+        criteriaQuery.where(predicate);
+        return em.createQuery(criteriaQuery).getResultList();
     }
 
     public void update(Address address) { em.merge(address); }

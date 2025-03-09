@@ -27,6 +27,7 @@ public class OrderService {
         AddressDAO addressDAO = new AddressDAO(em);
         System.out.println(clientDAO.findByName("João"));
         System.out.println(addressDAO.findClient("SP", null, null));
+        System.out.println(addressDAO.findClientUsingCriteria("SP", null, null));
 
         em.getTransaction().commit();
         em.close();
