@@ -46,7 +46,7 @@ public class AddressDAO {
         return query;
     }
 
-    private TypedQuery<ClientVo> addParamsToQuery(TypedQuery<ClientVo> tq, String state, String city, String street) {
+    private void addParamsToQuery(TypedQuery<ClientVo> tq, String state, String city, String street) {
         if(Objects.nonNull(state)) {
             tq.setParameter("state", state);
         }
@@ -56,7 +56,6 @@ public class AddressDAO {
         if(Objects.nonNull(street)) {
             tq.setParameter("street", street);
         }
-        return tq;
     }
 
     public void update(Address address) { em.merge(address); }

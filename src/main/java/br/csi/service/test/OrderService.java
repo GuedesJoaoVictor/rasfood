@@ -2,12 +2,8 @@ package br.csi.service.test;
 
 import br.csi.dao.AddressDAO;
 import br.csi.dao.ClientDAO;
-import br.csi.dao.MenuDAO;
 import br.csi.dao.OrderDAO;
-import br.csi.entity.Address;
-import br.csi.entity.Client;
 import br.csi.entity.Order;
-import br.csi.entity.OrderMenu;
 import br.csi.utils.ChargeDataUtil;
 import br.csi.utils.JPAUtil;
 

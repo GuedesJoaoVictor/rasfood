@@ -1,7 +1,6 @@
 package br.csi.dao;
 
 import br.csi.entity.Menu;
-import br.csi.entity.MenuCategory;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;

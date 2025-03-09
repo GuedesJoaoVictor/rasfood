@@ -2,7 +2,6 @@ package br.csi.dao;
 
 import br.csi.entity.Order;
 import br.csi.vo.PrimaryItensVo;
-import org.h2.command.query.Select;
 
 import javax.persistence.EntityManager;
 import java.util.List;
