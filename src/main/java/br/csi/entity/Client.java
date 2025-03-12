@@ -12,6 +12,8 @@ public class Client {
     private int id;
     private String name;
     private String cpf;
+    @Embedded
+    private Contact contact;
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Address> addressList = new ArrayList<>();
 
@@ -57,10 +59,12 @@ public class Client {
         this.addressList.add(address);
     }
 
-    public Client(String name, String cpf, List<Address> addressList) {
-        this.name = name;
-        this.cpf = cpf;
-        this.addressList = addressList;
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
     @Override
@@ -69,6 +73,7 @@ public class Client {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", cpf='" + cpf + '\'' +
+                ", contact=" + contact +
                 ", addressList=" + addressList +
                 '}';
     }
