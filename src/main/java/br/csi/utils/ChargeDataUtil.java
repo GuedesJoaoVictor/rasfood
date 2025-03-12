@@ -68,11 +68,12 @@ public class ChargeDataUtil {
         Address address5 = new Address("321654987", "Avenida Paulista", "1500", "SP", "São Paulo");
 
         // Clientes
-        Client guedes = new Client("João Guedes", "05265294059", address1);
-        Client maria = new Client("Maria Silva", "12345678901", address2);
-        Client joao = new Client("João Oliveira", "98765432109", address3);
-        Client ana = new Client("Ana Costa", "45678912345", address4);
-        Client carlos = new Client("Carlos Souza", "32165498709", address5);
+        Client guedes = new Client("João Guedes", "05265294059", address1, "joaoguedes@email.com");
+        Client maria = new Client("Maria Silva", "12345678901", address2, "maria@email.com");
+        Client joao = new Client("João Oliveira", "98765432109", address3, "joaooliveira@email.com");
+        Client ana = new Client("Ana Costa", "45678912345", address4, "ana@email.com");
+        Client carlos = new Client("Carlos Souza", "32165498709", address5, "carlos@email.com");
+
 
         // Associando endereços aos clientes
         guedes.setAddress(address1);

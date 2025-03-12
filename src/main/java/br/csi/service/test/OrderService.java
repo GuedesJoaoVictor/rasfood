@@ -3,6 +3,7 @@ package br.csi.service.test;
 import br.csi.dao.AddressDAO;
 import br.csi.dao.ClientDAO;
 import br.csi.dao.OrderDAO;
+import br.csi.entity.ClientId;
 import br.csi.entity.Order;
 import br.csi.utils.ChargeDataUtil;
 import br.csi.utils.JPAUtil;
@@ -28,7 +29,9 @@ public class OrderService {
         System.out.println(clientDAO.findByName("João"));
         System.out.println(addressDAO.findClient("SP", null, null));
         System.out.println(addressDAO.findClientUsingCriteria("SP", null, null));
-        
+
+        System.out.println(clientDAO.findById(new ClientId("joaoguedes@email.com", "05265294059")));
+
         em.getTransaction().commit();
         em.close();
     }

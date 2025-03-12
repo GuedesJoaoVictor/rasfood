@@ -30,7 +30,7 @@ public class AddressDAO {
     }
 
     public List<ClientVo> findClient(String state, String city, String street) {
-        String query = "select new br.csi.vo.ClientVo(a.client.cpf, a.client.name) from Address a where 1=1";
+        String query = "select new br.csi.vo.ClientVo(a.client.clientId.cpf, a.client.name) from Address a where 1=1";
         query = verifyParamsToQuery(query, state, city, street);
         TypedQuery<ClientVo> tq = em.createQuery(query, ClientVo.class);
         addParamsToQuery(tq, state, city, street);
@@ -66,7 +66,7 @@ public class AddressDAO {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<ClientVo> criteriaQuery = builder.createQuery(ClientVo.class);
         Root<Address> root = criteriaQuery.from(Address.class);
-        criteriaQuery.multiselect(root.get("client").get("cpf"), root.get("client").get("name"));
+        criteriaQuery.multiselect(root.get("client").get("clientId").get("cpf"), root.get("client").get("name"));
         Predicate predicate = builder.and();
 
         if(Objects.nonNull(state)) {

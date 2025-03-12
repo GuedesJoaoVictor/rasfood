@@ -1,6 +1,7 @@
 package br.csi.dao;
 
 import br.csi.entity.Client;
+import br.csi.entity.ClientId;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -14,7 +15,7 @@ public class ClientDAO {
 
     public void save(Client client) { em.persist(client); }
 
-    public void findById(int id) { em.find(Client.class, id); }
+    public Client findById(ClientId id) { return em.find(Client.class, id); }
 
     public List<Client> findAll() {
         String query = "select c from Client c";

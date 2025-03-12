@@ -7,11 +7,9 @@ import java.util.List;
 @Entity
 @Table(name = "clients")
 public class Client {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @EmbeddedId
+    private ClientId clientId;
     private String name;
-    private String cpf;
     @Embedded
     private Contact contact;
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
@@ -19,19 +17,19 @@ public class Client {
 
     public Client() {}
 
-    public Client(String name, String cpf, Address address) {
+    public Client(String name, String cpf, Address address, String email) {
+        this.clientId = new ClientId(email, cpf);
         this.name = name;
-        this.cpf = cpf;
         this.addressList.add(address);
         address.setClient(this);
     }
 
-    public int getId() {
-        return id;
+    public String getEmail() {
+        return clientId.getEmail();
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setEmail(String email) {
+        clientId.setEmail(email);
     }
 
     public String getName() {
@@ -43,11 +41,11 @@ public class Client {
     }
 
     public String getCpf() {
-        return cpf;
+        return clientId.getCpf();
     }
 
     public void setCpf(String cpf) {
-        this.cpf = cpf;
+        clientId.setCpf(cpf);
     }
 
     public List<Address> getAddressList() {
@@ -70,11 +68,11 @@ public class Client {
     @Override
     public String toString() {
         return "Client{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
-                ", cpf='" + cpf + '\'' +
+                ", cpf='" + clientId.getCpf() + '\'' +
                 ", contact=" + contact +
                 ", addressList=" + addressList +
+                ", email=" + clientId.getEmail() +
                 '}';
     }
 }
